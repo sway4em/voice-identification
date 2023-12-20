@@ -1,11 +1,12 @@
+import os
 from pyannote.audio import Model
 model = Model.from_pretrained("pyannote/embedding", 
-                              use_auth_token="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")
+                              os.getenv("PYANNOTE_AUTH_TOKEN"))
 
 from pyannote.audio import Inference
 inference = Inference(model, window="whole")
-embedding1 = inference("Voicy_And we say bye bye.wav")
-embedding2 = inference("Voicy_You're fired.wav")
+embedding1 = inference("trump3.wav")
+embedding2 = inference("trump4.wav")
 # `embeddingX` is (1 x D) numpy array extracted from the file as a whole.
 
 from scipy.spatial.distance import cdist
